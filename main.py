@@ -59,7 +59,9 @@ tests = {
 
 
 def locate_card(cards, query):
-    position = 0
+    """Simple linear search usage program that finds the wanted number using linear search"""
+    # This variable here stores the index number 
+    position = 0 
     for card in cards:
         if card == query:
             return position
