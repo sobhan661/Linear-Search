@@ -53,10 +53,33 @@ tests = {
         "output" : None
     }
 }
+
+# ----------------------------------------------------------------------------------
+# A tool for testing function with more visibility and it's easier to understand
+# ----------------------------------------------------------------------------------
+
+def result_test(tests):
+    """
+    A function that makes testing and its results easier
+    """
+    all_results = []
+    for test_name, test in tests.items():
+        results = []
+        if locate_card(**test["inputs"]) == test["output"]:
+            results.append(f"Test '{test_name}': {locate_card(**test['inputs'])}")
+            results.append("Passes!")
+        else:
+            results.append(f"Test '{test_name}': {locate_card(**test['inputs'])}")
+            results.append("Failed")
+        all_results.append(results)
+
+    # Print results for better visibility
+    for result in all_results:
+        print(" | ".join(result))
+
 # ----------------------------------------------------------------------------------
 # Program : Linear Search
 # ----------------------------------------------------------------------------------
-
 
 def locate_card(cards, query):
     """Simple linear search usage program that finds the wanted number using linear search"""
@@ -68,19 +91,11 @@ def locate_card(cards, query):
         else:
             position += 1
 
-
 # ----------------------------------------------------------------------------------
-# Testings
+# Testing With Tool
 # ----------------------------------------------------------------------------------
 
-print(locate_card(**tests["number in middle"]["inputs"]))
-print(locate_card(**tests["number is not in the cards"]["inputs"]))
-print(locate_card(**tests["number is the first element"]["inputs"]))
-print(locate_card(**tests["number is the last element"]["inputs"]))
-print(locate_card(**tests["there are many same numbers in cards"]["inputs"]))
-print(locate_card(**tests["there are no cards at all"]["inputs"]))
-print(locate_card(**tests["there is only 1 card and thats the correct card"]["inputs"]))
-
+result_test(tests)
 
 # ----------------------------------------------------------------------------------
 # Notes : If you have any other testing possibility, I would be more than happy if you share it with community
